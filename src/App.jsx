@@ -1,19 +1,16 @@
 import { useState } from "react"
 
 function App() {
-    const [bfiyat, bfiyatGuncelle] = useState("")
-    const [adet, adetGuncelle] = useState("")
-    const [kdv, kdvGuncelle] = useState("")
-    const [sonuc, sonucGuncelle] = useState(0)
+    const [bfiyat, bfiyatGuncelle] = useState(0)
+    const [adet, adetGuncelle] = useState(0)
+    const [kdv, kdvGuncelle] = useState(0)
 
     function formGonderim(olay) {
         olay.preventDefault()
-
-        let tutar = parseInt(bfiyat) * parseInt(adet)
-        tutar = tutar + (tutar/100) * parseInt(kdv)
-
-        sonucGuncelle(tutar)
     }
+
+    let tutar = parseInt(bfiyat) * parseInt(adet)
+    tutar = tutar + (tutar/100) * parseInt(kdv)
         
     return (
         <>
@@ -27,11 +24,9 @@ function App() {
 
                 <input type="text" placeholder="KDV % ör: 18"
                  onChange={ olay=>kdvGuncelle(olay.target.value) } />
-
-                <button type="submit">Hesapla</button>
             </form>
 
-            <p>{sonuc}</p>
+            <p>{tutar}TL</p>
         </>
     )
 }
